@@ -1,4 +1,4 @@
-job('git-maven-webhook-dsl-test')
+job('git-maven-webhook-dsl')
 {
 	description('This is job created by maven-jenkins-job')
 		scm {
