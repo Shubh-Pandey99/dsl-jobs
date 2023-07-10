@@ -1,0 +1,35 @@
+job('maven-jenkins-job-dsl')
+{
+	description('This is job created by maven-jenkins-job')
+		scm {
+		        github('Shubh-Pandey99/maven-git','main',)
+			    }
+			    	
+					
+						steps {
+						        maven {
+							           mavenInstallation('Maven-Jenkins')
+								               goals('-B -DskipTests clean package')
+									                  
+											          }
+												  		maven {
+														           mavenInstallation('Maven-Jenkins')
+															               goals('test')
+																                  
+																		          }
+																			  		shell('''
+																							echo "***********************"
+																							echo " DEPLOY JAR"
+																							echo "***********************"
+
+																							java -jar /var/jenkins_home/workspace/Maven_Jenkins_Job/target/my-app-1.0-SNAPSHOT.jar
+																									''')
+																									    }
+																									    	
+																											publishers {
+																											        archiveArtifacts('target/*.jar')
+																														 archiveJunit('target/surefire-reports/*.xml')
+																														     }
+																														     	
+																																
+																																}
